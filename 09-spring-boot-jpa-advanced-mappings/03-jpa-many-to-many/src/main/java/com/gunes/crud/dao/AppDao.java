@@ -3,6 +3,7 @@ package com.gunes.crud.dao;
 import com.gunes.crud.entity.Course;
 import com.gunes.crud.entity.Instructor;
 import com.gunes.crud.entity.InstructorDetail;
+import com.gunes.crud.entity.Student;
 
 import java.util.List;
 
@@ -21,7 +22,21 @@ public interface AppDao {
 
     List<Course> findCourseByInstructorId(int theId);
 
+    void deleteCourseById(int theId);
+
     Instructor findInstructorByIdJoinFetch(int theId);
 
     void update(Instructor tempInstructor);
+
+    void save(Course theCourse);
+
+    Course findCourseAndReviewsByCourseId(int theId);
+
+    Course findCourseAndStudentsByCourseId(int theId);
+
+    Student findStudentAndCoursesByStudentId(int theId);
+
+    void update(Student theStudent);
+
+    void deleteStudentById(int theId);
 }

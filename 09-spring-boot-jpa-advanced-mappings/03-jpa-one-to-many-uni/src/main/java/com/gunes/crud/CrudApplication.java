@@ -4,6 +4,7 @@ import com.gunes.crud.dao.AppDao;
 import com.gunes.crud.entity.Course;
 import com.gunes.crud.entity.Instructor;
 import com.gunes.crud.entity.InstructorDetail;
+import com.gunes.crud.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,17 +22,49 @@ public class CrudApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AppDao appDao) {
         return runner -> {
-//			createInstructor(appDao);
-//            findInstrutor(appDao);
-            deleteInstructor(appDao);
-//            findInstrutorDetail(appDao);
-//            deleteInstructorDetail(appDao);
-//            createInstructorWithCourses(appDao);
-//            findInstructorWithCourses(appDao);
-//            findCoursesForInstructor(appDao);
-//            findInstructorWithCoursesJoinFetch(appDao);
-//            updateInstructor(appDao);
+//            createCourseAndReviews(appDao);
+//            retrieveCourseAndReviews(appDao);
+            deleteCourseAndReviews(appDao);
         };
+    }
+
+    private void deleteCourseAndReviews(AppDao appDao) {
+        int theId=10;
+        System.out.println("Deleting course id: "+theId);
+
+        appDao.deleteCourseById(theId);
+
+        System.out.println("Done");
+    }
+
+    private void retrieveCourseAndReviews(AppDao appDao) {
+        int theId=10;
+        Course tempCourse=appDao.findCourseAndReviewsByCourseId(theId);
+
+        System.out.println(tempCourse);
+
+        System.out.println(tempCourse.getReviews());
+
+        System.out.println("Done");
+    }
+
+    private void createCourseAndReviews(AppDao appDao) {
+
+        Course tempCourse=new Course("Hibernate");
+
+        tempCourse.addReview(new Review("This course is amazing :)"));
+        tempCourse.addReview(new Review("You should take this course"));
+        tempCourse.addReview(new Review("I love that course"));
+
+        System.out.println("Saving the course");
+
+        System.out.println(tempCourse);
+
+        System.out.println(tempCourse.getReviews());
+
+        appDao.save(tempCourse);
+
+        System.out.println("Done");
     }
 
     private void updateInstructor(AppDao appDao) {
