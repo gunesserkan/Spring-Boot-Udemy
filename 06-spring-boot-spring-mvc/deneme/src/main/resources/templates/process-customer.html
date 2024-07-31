@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer Form</title>
+</head>
+<body>
+Information:
+<span th:text="${customer.firstName+' '+customer.lastName}"/>
+<br><br>
+Favorite Language:
+<span th:text="${customer.favoriteLanguage}"/>
+<br><br>
+Systems:
+<span th:text="${customer.favoriteSystems}"/>
+</body>
+</html>
